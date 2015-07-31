@@ -24,7 +24,7 @@
     - lxc-docker
 
 - name: Install Docker Python
-  pip: name=docker-py state=present
+  pip: name=docker-py state=present version=1.2.3
   sudo: yes
 
 - name: Add User to group
