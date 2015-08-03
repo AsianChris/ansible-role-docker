@@ -1,8 +1,6 @@
 ---
 # tasks file for AsianChris.docker
 
-# would rather have used ansible apt-key...
-
 - name: Add Source List
   copy:
     src=docker.list
