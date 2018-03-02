@@ -1,30 +1,10 @@
 ---
 # tasks file for AsianChris.docker
 
-- name: Add Source List
-  copy:
-    src=docker.list
-    dest=/etc/apt/sources.list.d/docker.list
-  sudo: yes
-
-- name: Add specific key
-  apt_key: keyserver=keyserver.ubuntu.com id=36A1D7869245C8950F966E92D8576A8BA88D21E9
-  sudo: yes
-
-- name: Apt update cache
-  apt: update_cache=yes
-  sudo: yes
-
-- name: Install Docker Engine
-  apt: pkg={{item}} state=present
-  sudo: yes
-  with_items:
-    - lxc-docker
-
-- name: Install Docker Python
-  pip: name=docker-py state=present version=1.2.3
-  sudo: yes
+- name: Add Docker on Ubuntu systems
+  include_tasks: os/ubuntu.yml
 
 - name: Add User to group
   user: name={{ ansible_ssh_user }} groups=docker append=yes
-  sudo: yes
+  become: yes
+  become_method: sudo
